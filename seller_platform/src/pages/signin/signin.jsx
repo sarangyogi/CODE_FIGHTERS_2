@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { Navigate, useNavigate,useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Navbar from '../../components/navbar/navbar';
+import { login } from '../../actions/userActions';
 
 function Copyright(props) {
   return (
@@ -29,17 +34,40 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  // const navigate = useNavigate();
+  const history=useHistory()
+  const dispatch = useDispatch();
+  const handleSubmit =async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const postingdata={
       email: data.get('email'),
-      password: data.get('password'),
-    });
+      password: data.get('password')
+    }
+    console.log(postingdata);
+    dispatch(login(postingdata))
+    try{
+      // dispatch(login(postingdata))
+      console.log("User logged in Successfully!")
+      // navigate('/dashboard')
+      await axios.post(`/login`,postingdata)
+        .then(res => {
+          // const persons = res.data;
+          console.log(res);
+          // res.redirect('/')
+          localStorage.setItem("userInfo",JSON.stringify(res.data))
+          // navigate("/dashboard");
+          history.push('/dashboard')
+        })
+    }
+    catch(e){
+      console.log(e)
+    }
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <Navbar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -96,7 +124,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -63,15 +63,17 @@ router.post('/register',async (req,res)=>{
         const token=createToken(user._id);
         res.set('Access-Control-Allow-Origin', '*');
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
-        return "success"
+        res.status(200).json(user)
+        // return "success"
         // res.redirect('/login');
     }catch(error){
         if(error.code===11000){
-            return res.json({ststus:"error", error:"You are already registered! Email is already exist"});
+            res.json({ststus:"error", error:"You are already registered! Email is already exist"});
         }
         else{
             const err=handleError(error);
-            return res.redirect('/');
+            res.status(400);
+            throw new Error("User not found");
         }
     }
 })

@@ -2,7 +2,6 @@
   "name": "code_fighters",
   "version": "1.0.0",
   "main": "app.js",
-  "proxy": "http://localhost:3000/",
   "dependencies": {
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",

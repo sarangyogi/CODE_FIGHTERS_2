@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+import Navbar from '../../components/navbar/navbar';
 
 function Copyright(props) {
   return (
@@ -37,19 +38,25 @@ export default function SignUp() {
         name: data.get('name'),
         email: data.get('email'),
         password: data.get('password'),
-      }
+        isSeller: true,
+    }
     console.log(postingdata);
-    await axios.post(`http://localhost:8080/register`,postingdata)
-      .then(res => {
-        // const persons = res.data;
-        console.log(res);
-        res.redirect('/')
-    })
-    
+    try{
+      const responseData= await axios.post("/register",postingdata)
+        .then(res => {
+          // const persons = res.data;
+          console.log(res);
+          // res.redirect('/')
+      })
+    }
+    catch(e){
+      console.log(e)
+    }
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <Navbar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -127,7 +134,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

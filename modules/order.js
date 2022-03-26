@@ -10,13 +10,21 @@ const ProductSchema= new Schema({
         type:String,
         required:true,
     },
-    price:{
-        type:Number,
+    status:{
+        type:String,
+        required:true,
+    },
+    location:{
+        type:String,
         required:true,
     },
     createdBy:{
         type:String,
         required:true,
+    },
+    source:{
+        type:String,
+        required:true
     }
 });
 
