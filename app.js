@@ -1,0 +1,139 @@
+const express=require('express');
+const mongoose=require('mongoose');
+// const ArtContact=require('./modules/contact');
+const path=require('path');
+const app=express();
+const morgan=require('morgan');
+//modules
+const Order=require('./modules/order');
+const User=require('./modules/user');
+const authroute=require('./routes/auth');
+
+// const passport=require('passport');
+const flash=require('connect-flash');
+const session=require('express-session');
+const cookieParser=require('cookie-parser');
+const validator = require('express-validator');
+// var MongoStore = require('connect-mongo')(session);
+var bodyParser = require('body-parser');
+
+const cheerio = require('cheerio');
+const axios=require('axios');
+
+require("./db/conn");
+// require("./config/passport");
+// const User=require('./modules/user');
+
+//body parser middle ware
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: 'mysupersecret', 
+    resave: false, 
+    saveUninitialized: true,
+    // store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { secure:true}
+}));
+
+
+//Express message middleware
+app.use(flash());
+// app.use((req,res,next)=>{
+//     res.locals.messages=require('express-messages')(req,res);
+//     next();
+// })
+const cors = require("cors");
+
+app.options("*", cors({ origin: 'http://localhost:3000', optionsSuccessStatus: 200 }));
+
+app.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
+
+app.listen(8080,()=>{
+    console.log('Listening on port 8080');
+});
+
+const { requireAuth,checkUser }=require('./middleware/authMiddleware');
+
+// app.get('*',checkUser);
+// app.use('/',authroute);
+
+app.get('/dashboard',(req,res)=>{
+    // res.sendFile("./views/index.html",{ root: __dirname});
+    // res.locals.user && res.locals.user.isArtist?
+    // res.send("hello")
+    console.log("hello")
+    res.redirect('/')
+    // res.render("dashboard")
+    // :res.render("index");
+})
+app.get('/about',(req,res)=>{
+    // res.sendFile('./views/about.html',{root:__dirname});
+    res.render("about");
+})
+app.get('/reg',(req,res)=>{
+    res.send("hello")
+})
+const maxAge=3*24*60*60;
+const createToken=(id)=>{
+    return jwt.sign({ id },'My Super Secret',{
+        expiresIn:maxAge
+    });
+}
+
+const handleError=(err)=>{  
+    console.log(err.message);
+    let error={email:"",password:""};
+
+    //validation errors
+    if(err.message.includes('user validation failed')){
+        Object.values(err.errors).forEach(({properties})=>{
+            // console.log(properties);
+            error[properties.path]=properties.message;
+        });
+    }
+    return error
+}
+const jwt=require('jsonwebtoken');
+app.post('/register',async (req,res)=>{
+    // return req
+    console.log(req,res)
+    const name=req.body.name;
+    const email=req.body.email;
+    const isSeller=true;
+    let password=req.body.password;
+    try{
+        // password=await bcrypt.hash(password,10);
+        const registerEmployee=new User({
+            name:name,
+            email:email,
+            password:password,
+            isSeller:isSeller,
+        })
+        // console.log(name,password,email);
+        const user= await registerEmployee.save();
+        // console.log(user);
+        const token=createToken(user._id);
+        res.set('Access-Control-Allow-Origin', '*');
+        res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+        return {
+            data:"success"
+        }
+        // res.redirect('/login');
+    }catch(error){
+        return {
+            data:"reject"
+        }
+        if(error.code===11000){
+            return res.json({ststus:"error", error:"You are already registered! Email is already exist"});
+        }
+        else{
+            const err=handleError(error);
+            return res.redirect('/');
+        }
+    }
+})
+
+
+
