@@ -21,6 +21,7 @@ import { mainListItems, secondaryListItems } from './Listitems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import Navbar from '../../components/navbar/navbar';
 
 function Copyright(props) {
   return (
@@ -91,6 +92,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
+      <Navbar/>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <Drawer variant="permanent" open={open}>

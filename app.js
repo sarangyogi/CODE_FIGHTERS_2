@@ -117,23 +117,42 @@ app.post('/register',async (req,res)=>{
         const token=createToken(user._id);
         res.set('Access-Control-Allow-Origin', '*');
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
-        return {
-            data:"success"
-        }
+        res.status(200).json(user)
         // res.redirect('/login');
     }catch(error){
-        return {
-            data:"reject"
-        }
         if(error.code===11000){
-            return res.json({ststus:"error", error:"You are already registered! Email is already exist"});
+            res.json({ststus:"error", error:"You are already registered! Email is already exist"});
         }
         else{
             const err=handleError(error);
-            return res.redirect('/');
+            res.status(400);
+            throw new Error("User not found");
         }
     }
 })
 
+app.post('/login',async (req,res)=>{
+    const email=req.body.email;
+    const password=req.body.password;
 
+    try{
+        const user=await User.login(email,password);
+        const token=createToken(user._id);
+        res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
+        // res.user=user
+        res.json(user)
 
+    }catch(error){
+        res.status(401);
+        throw new Error("Invalid Email or Password");
+    }
+})
+
+app.post('/logout',requireAuth,(req,res)=>{
+    res.cookie("jwt","",{maxAge:1});
+    res.json(null)
+    // res.redirect('/');
+})
+app.get('/test',(req,res)=>{
+    res.send("Hello this is for testing purpose!")
+})
