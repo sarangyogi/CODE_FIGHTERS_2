@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import Navbar from '../../components/navbar/navbar';
+import { Navigate, useNavigate,useHistory } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -31,6 +32,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const history=useHistory()
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,6 +48,9 @@ export default function SignUp() {
         .then(res => {
           // const persons = res.data;
           console.log(res);
+          localStorage.setItem("userInfo",JSON.stringify(res.data))
+          // navigate("/dashboard");
+          history.push('/signin')
           // res.redirect('/')
       })
     }

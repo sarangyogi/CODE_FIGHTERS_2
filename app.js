@@ -138,13 +138,15 @@ app.post('/login',async (req,res)=>{
     try{
         const user=await User.login(email,password);
         const token=createToken(user._id);
+        res.set('Access-Control-Allow-Origin', '*');
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
         // res.user=user
-        res.json(user)
+        res.status(200).json(user)
 
     }catch(error){
         res.status(401);
-        throw new Error("Invalid Email or Password");
+        // throw new Error("Invalid Email or Password");
+        res.json(error)
     }
 })
 
