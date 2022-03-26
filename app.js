@@ -140,7 +140,6 @@ app.post('/login',async (req,res)=>{
         const token=createToken(user._id);
         res.set('Access-Control-Allow-Origin', '*');
         res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000});
-        // res.user=user
         res.status(200).json(user)
 
     }catch(error){
