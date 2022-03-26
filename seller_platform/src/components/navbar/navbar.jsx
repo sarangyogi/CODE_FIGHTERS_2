@@ -13,6 +13,7 @@ import { Button } from "@mui/material";
 import {} from "react-router-dom";
 import { useNavigate,useHistory } from "react-router-dom";
 import axios from "axios";
+import { textAlign } from "@mui/system";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
@@ -28,14 +29,11 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
     // marginLeft: theme.spacing(20),
-    "&:hover": {
-      borderBottom: "1px solid white",
-    },
-	justifyContent:"space-between"
+	  justifyContent:"space-between",
+    textAlign:"center"
   },
   button:{
     color:"white",
-
   }
 }));
 

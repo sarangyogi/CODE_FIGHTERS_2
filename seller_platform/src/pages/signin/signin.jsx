@@ -46,11 +46,16 @@ export default function SignIn() {
     }
     console.log(postingdata);
     dispatch(login(postingdata))
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
     try{
       // dispatch(login(postingdata))
       console.log("User logged in Successfully!")
       // navigate('/dashboard')
-      await axios.post(`/login`,postingdata)
+      await axios.post(`/login`,postingdata,config)
         .then(res => {
           // const persons = res.data;
           console.log(res);

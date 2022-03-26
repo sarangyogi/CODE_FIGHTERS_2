@@ -27,14 +27,15 @@ export const login = (email, password) => async (dispatch) => {
         { email, password },
         config
       ).then(res=>{
-        localStorage.setItem("userInfo", JSON.stringify(res));
-        dispatch({ type: USER_LOGIN_SUCCESS, payload: res });
+        console.log(res,"00000000")
+        localStorage.setItem("userInfo", JSON.stringify(res.data));
+        // dispatch({ type: USER_LOGIN_SUCCESS, payload: res.data });
       });
   
-      // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
   
       // localStorage.setItem("userInfo", JSON.stringify(data));
-      return
+      // return
     } catch (error) {
       dispatch({
         type: USER_LOGIN_FAIL,
@@ -67,12 +68,12 @@ export const login = (email, password) => async (dispatch) => {
         { name, email, password, isSeller },
         config
       ).then(res=>{
-        localStorage.setItem("userInfo", JSON.stringify(res));
+        localStorage.setItem("userInfo", JSON.stringify(res.data));
+        dispatch({ type: USER_REGISTER_SUCCESS, payload: res.data });
+    
+        dispatch({ type: USER_LOGIN_SUCCESS, payload: res.data });
       });
   
-      dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-  
-      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
