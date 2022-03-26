@@ -10,22 +10,22 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(10),
+    // marginLeft: theme.spacing(10),
     display: "flex",
+	justifyContent: "space-evenly",
+    width: "80%"
   },
- logo: {
-    flexGrow: "1",
+  logo: {
     cursor: "pointer",
   },
   link: {
     textDecoration: "none",
     color: "white",
-    fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    // marginLeft: theme.spacing(20),
     "&:hover": {
-      color: "yellow",
       borderBottom: "1px solid white",
     },
+	justifyContent:"space-between"
   },
 }));
 
@@ -37,20 +37,20 @@ function Navbar() {
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>
-          Navbar
+          Seller Logistics
         </Typography>
           <div className={classes.navlinks}>
             <Link to="/" className={classes.link}>
               Home
             </Link>
-            <Link to="/about" className={classes.link}>
-              About
+            <Link to="/signin" className={classes.link}>
+              SignIn
             </Link>
-            <Link to="/contact" className={classes.link}>
-              Contact
+            <Link to="/signup" className={classes.link}>
+              SignUp
             </Link>
-            <Link to="/faq" className={classes.link}>
-              FAQ
+            <Link to="/dashboard" className={classes.link}>
+              Dashboard
             </Link>
           </div>
       </Toolbar>
