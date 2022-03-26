@@ -55,9 +55,15 @@ export default function SignIn() {
           // const persons = res.data;
           console.log(res);
           // res.redirect('/')
-          localStorage.setItem("userInfo",JSON.stringify(res.data))
-          // navigate("/dashboard");
-          history.push('/dashboard')
+          if(res){
+            console.log(res.data,"0000000")
+            localStorage.setItem("userInfo",JSON.stringify(res.data))
+            // navigate("/dashboard");
+            history.push('/dashboard')
+          }
+          else{
+            console.log("error in logging in")
+          }
         })
     }
     catch(e){

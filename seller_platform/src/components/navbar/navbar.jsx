@@ -69,24 +69,22 @@ function Navbar() {
     catch(e){
       console.log(e)
     }
-    // navigate('/signin')
-    // history.push('/signin')
     console.log("User logged Out Successfully!")
   };
-  useEffect(() => {}, [userInfo]);
-  useEffect(async () => {
-    checkLoggedIn()
-  }, [])
-  const checkLoggedIn = async () => {
-    if(localStorage.getItem('userInfo')){
-      const email=localStorage.getItem('userInfo').email
-      const password=localStorage.getItem('userInfo').password
-      if (email) {
-        await dispatch(login(email,password))
-      }
-      // userInfo=localStorage.getItem('userInfo')
-    }
-  }
+  // useEffect(() => {}, [userInfo]);
+  // useEffect(async () => {
+  //   checkLoggedIn()
+  // }, [])
+  // const checkLoggedIn = async () => {
+  //   if(localStorage.getItem('userInfo')){
+  //     const email=localStorage.getItem('userInfo').email
+  //     const password=localStorage.getItem('userInfo').password
+  //     if (email) {
+  //       await dispatch(login(email,password))
+  //     }
+  //     // userInfo=localStorage.getItem('userInfo')
+  //   }
+  // }
   return (
     <AppBar position="static">
       <CssBaseline />

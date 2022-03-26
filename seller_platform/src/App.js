@@ -23,19 +23,19 @@ const PagesRoutes=()=>{
   // useEffect(() => {
   //   dispatch(login(userInfo.email,userInfo.password))
   // }, [userInfo])
-  useEffect(async () => {
-    checkLoggedIn()
-    // dispatch(globalContentInitialize())
-  }, [])
-  const checkLoggedIn = async () => {
-    if(localStorage.getItem('userInfo')){
-      const email=localStorage.getItem('userInfo').email
-      const password=localStorage.getItem('userInfo').password
-      if (email) {
-        dispatch(login(email,password))
-      }
-    }
-  }
+  // useEffect(async () => {
+  //   checkLoggedIn()
+  //   // dispatch(globalContentInitialize())
+  // }, [])
+  // const checkLoggedIn = async () => {
+  //   if(localStorage.getItem('userInfo')){
+  //     const email=localStorage.getItem('userInfo').email
+  //     const password=localStorage.getItem('userInfo').password
+  //     if (email) {
+  //       dispatch(login(email,password))
+  //     }
+  //   }
+  // }
   return (
     <Router>
       <div className="App">
