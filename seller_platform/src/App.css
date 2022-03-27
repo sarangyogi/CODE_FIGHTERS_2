@@ -1,3 +1,17 @@
+.order_details h1{
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+.order_details h3{
+  padding-top: 0.3rem;
+  padding-bottom: 0.8rem;
+}
+
+.order_details h6{
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
 .App {
   text-align: center;
 }

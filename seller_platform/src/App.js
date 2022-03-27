@@ -17,6 +17,7 @@ import store from './store'
 import { login } from './actions/userActions';
 import Orders from './pages/orders/Orders';
 import Product from './pages/orders/Product';
+import 'bootstrap/dist/css/bootstrap.min.css';
 const PagesRoutes=()=>{
   const dispatch = useDispatch();
   const userInfo=localStorage.getItem('userInfo')
@@ -46,6 +47,8 @@ const PagesRoutes=()=>{
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/orders/:id" component={Product} />
+          {/* <Route path="/orders" component={Orders} /> */}
+          <Route path="/signin" component={SignIn} />
           {
             userInfo?(<Route path="/dashboard" component={Dashboard} />):
             (<Route path="/signup" component={SignUp} />)
