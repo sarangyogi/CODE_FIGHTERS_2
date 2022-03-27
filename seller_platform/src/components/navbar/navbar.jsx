@@ -114,6 +114,12 @@ function Navbar() {
             )
             }
             {
+              userInfo?(<Link to="/orders" className={classes.link}>
+                Orders
+              </Link>
+              ):null
+            }
+            {
               userInfo?(<Button className={classes.button} style={{color:"white"}} onClick={logoutHandler}>
                 LogOut
               </Button>):(
