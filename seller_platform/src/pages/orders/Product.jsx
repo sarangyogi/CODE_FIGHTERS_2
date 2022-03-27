@@ -1,12 +1,14 @@
 import React from 'react'
 import Navbar from '../../components/navbar/navbar'
-
-function Product() {
+import { useParams } from "react-router";
+function Product(props) {
+    let { id } = useParams();
+    console.log(id,"111111")
   return (
     <div>
         <Navbar/>
         Product
-
+        {id}
     </div>
   )
 }
