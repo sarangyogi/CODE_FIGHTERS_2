@@ -20,30 +20,26 @@ const bull = (
 export default function BasicCard({data}) {
   console.log(data,"00000000");
   return (
-    <div style={{display:"flex",justifyContent:"space-around"}}>
+    <div style={{display:"flex",justifyContent:"space-around", marginTop:"25px"}}>
     {
       data.map((data)=>{
         return (<Card sx={{ minWidth: 150,maxWidth:300 }} key={data.id}>
-      <CardContent>
+      <CardContent style={{textAlign:"left"}}>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {data.name}
         </Typography>
         <Typography variant="h5" component="div">
           {data.shipTo}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {data.shipTo}
-        </Typography>
+        <br />
         <Typography variant="body2">
-          {data.phone}
+          Phone : {data.phone}
           <br />
           {/* {'"a benevolent smile"'} */}
-          {data.amount}
+          Amount: {data.amount}
         </Typography>
       </CardContent>
-      <CardActions>
-        
-        {/* <Button size="small" onClick={handleChange}>Learn More</Button> */}
+      <CardActions style={{justifyContent:"right",paddingRight:"20px"}}>
         <Link to={`/orders/${data.id}`}> View More </Link>
       </CardActions>
     </Card>)

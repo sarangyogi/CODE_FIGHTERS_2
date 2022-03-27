@@ -60,7 +60,7 @@ function Tracker() {
     <>
       <Navbar />
       <div>
-        <button onClick={() => setCount(1)}>Click me</button>
+        <button onClick={() => setCount(1)} className="btn-primary" style={{padding:"5px",borderRadius:"10px"}}>Show Map</button>
         {Count === 1 ? (
           <Map
             style="mapbox://styles/mapbox/streets-v9"

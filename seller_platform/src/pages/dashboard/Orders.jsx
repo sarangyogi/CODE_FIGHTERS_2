@@ -32,16 +32,6 @@ export default function Orders() {
     })
     .then((res) => {
       console.log(res.data);
-      // rows=(res.data.data).map((order)=>(
-      //   [...rows,createData(
-      //     4,
-      //     '15 Mar, 2019',
-      //     'Bruce Springsteen',
-      //     'Long Branch, NJ',
-      //     'VISA ⠀•••• 5919',
-      //     212.79,
-      //   )]
-      // ))
       var rows = [];
       for (let i = 0; i < res.data.data.length; i++) {
         rows.push(createData(

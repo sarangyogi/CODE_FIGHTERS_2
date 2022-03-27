@@ -56,7 +56,6 @@ export default function Orders() {
   return (
     <React.Fragment>
         <Navbar/>
-      <Title>All Orders</Title>
       <BasicCard data={orders}/>
     </React.Fragment>
   );

@@ -18,7 +18,7 @@ import { login } from './actions/userActions';
 import Orders from './pages/orders/Orders';
 import Product from './pages/orders/Product';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Tracker from './pages/tracker/Tracker';
+import Tracker from './pages/Tracker/Tracker';
 
 const PagesRoutes=()=>{
   const dispatch = useDispatch();

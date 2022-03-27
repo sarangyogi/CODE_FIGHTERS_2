@@ -14,7 +14,7 @@ import {} from "react-router-dom";
 import { useNavigate,useHistory } from "react-router-dom";
 import axios from "axios";
 import { textAlign } from "@mui/system";
-
+import Logo from './logo.jpg'
 const useStyles = makeStyles((theme) => ({
   navlinks: {
     // marginLeft: theme.spacing(10),
@@ -86,11 +86,12 @@ function Navbar() {
   return (
     <AppBar position="static">
       <CssBaseline />
-      <Toolbar>
+      <Toolbar style={{justifyContent:"space-between"}}>
         <Typography variant="h4" className={classes.logo}>
-          Seller Logistics
+          {/* Seller Logistics */}
+          <img src={Logo} alt="Logo" style={{width:"125px"}}/>
         </Typography>
-          <div className={classes.navlinks}>
+          <div className={classes.navlinks} style={{ alignItems: "center"}}>
             <Link to="/" className={classes.link}>
               Home
             </Link>

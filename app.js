@@ -37,13 +37,7 @@ app.use(session({
     cookie: { secure:true}
 }));
 
-
-//Express message middleware
 app.use(flash());
-// app.use((req,res,next)=>{
-//     res.locals.messages=require('express-messages')(req,res);
-//     next();
-// })
 const cors = require("cors");
 
 app.options("*", cors({ origin: 'http://localhost:3000', optionsSuccessStatus: 200 }));
