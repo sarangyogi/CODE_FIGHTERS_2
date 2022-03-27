@@ -15,6 +15,7 @@ import Navbar from './components/navbar/navbar';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 import store from './store'
 import { login } from './actions/userActions';
+import Orders from './pages/orders/Orders';
 const PagesRoutes=()=>{
   const dispatch = useDispatch();
   const userInfo=localStorage.getItem('userInfo')
@@ -46,6 +47,10 @@ const PagesRoutes=()=>{
           {
             userInfo?(<Route path="/dashboard" component={Dashboard} />):
             (<Route path="/signup" component={SignUp} />)
+          }
+          {
+            userInfo?(<Route path="/orders" component={Orders} />):
+            (<Route path="/signin" component={SignIn} />)
           }
           {/* <Route path="/dashboard" component={Dashboard} /> */}
         </Switch>
