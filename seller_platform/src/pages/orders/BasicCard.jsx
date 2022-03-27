@@ -5,6 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const bull = (
   <Box
@@ -17,9 +19,6 @@ const bull = (
 
 export default function BasicCard({data}) {
   console.log(data,"00000000");
-  const handleChange=(e)=>{
-    console.log(e.target.value)
-  }
   return (
     <div style={{display:"flex",justifyContent:"space-around"}}>
     {
@@ -43,7 +42,9 @@ export default function BasicCard({data}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={handleChange}>Learn More</Button>
+        
+        {/* <Button size="small" onClick={handleChange}>Learn More</Button> */}
+        <Link to={`/orders/${data.id}`}> View More </Link>
       </CardActions>
     </Card>)
       })

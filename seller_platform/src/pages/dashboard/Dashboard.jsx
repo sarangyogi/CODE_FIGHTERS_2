@@ -93,10 +93,10 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 // jkj
-const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1IjoiYWRpdHlhLTcxNDMiLCJhIjoiY2t2emprMjAyMmZmOTJwbTlpemZ4Y3ZlbCJ9.DFZZjO-WQ1FWDDCFoxDh1Q",
-});
+// const Map = ReactMapboxGl({
+//   accessToken:
+//     "pk.eyJ1IjoiYWRpdHlhLTcxNDMiLCJhIjoiY2t2emprMjAyMmZmOTJwbTlpemZ4Y3ZlbCJ9.DFZZjO-WQ1FWDDCFoxDh1Q",
+// });
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -178,7 +178,7 @@ function DashboardContent() {
                 </Paper>
               </Grid>
             </Grid>
-            <div>
+            {/* <div>
               <Map
                 style="mapbox://styles/mapbox/streets-v9"
                 containerStyle={{
@@ -213,7 +213,7 @@ function DashboardContent() {
                   </div>
                 </Marker>
               </Map>
-            </div>
+            </div> */}
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
