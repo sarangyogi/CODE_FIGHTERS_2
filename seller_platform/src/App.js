@@ -18,37 +18,21 @@ import { login } from './actions/userActions';
 import Orders from './pages/orders/Orders';
 import Product from './pages/orders/Product';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Tracker from './pages/tracker/Tracker';
+
 const PagesRoutes=()=>{
   const dispatch = useDispatch();
   const userInfo=localStorage.getItem('userInfo')
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { userInfo } = userLogin;
-  // useEffect(() => {
-  //   dispatch(login(userInfo.email,userInfo.password))
-  // }, [userInfo])
-  // useEffect(async () => {
-  //   checkLoggedIn()
-  //   // dispatch(globalContentInitialize())
-  // }, [])
-  // const checkLoggedIn = async () => {
-  //   if(localStorage.getItem('userInfo')){
-  //     const email=localStorage.getItem('userInfo').email
-  //     const password=localStorage.getItem('userInfo').password
-  //     if (email) {
-  //       dispatch(login(email,password))
-  //     }
-  //   }
-  // }
+  
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route path="/signin" component={SignIn} />
-          <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/orders/:id" component={Product} />
+          <Route path="/orderTracker" component={Tracker}/>
           {/* <Route path="/orders" component={Orders} /> */}
-          <Route path="/signin" component={SignIn} />
           {
             userInfo?(<Route path="/dashboard" component={Dashboard} />):
             (<Route path="/signup" component={SignUp} />)
