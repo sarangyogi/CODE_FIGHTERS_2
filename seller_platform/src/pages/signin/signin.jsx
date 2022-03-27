@@ -45,7 +45,7 @@ export default function SignIn() {
       password: data.get('password')
     }
     console.log(postingdata);
-    dispatch(login(postingdata))
+    dispatch(login(postingdata.email,postingdata.password))
     const config = {
       headers: {
         "Content-type": "application/json",
