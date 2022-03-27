@@ -19,13 +19,13 @@ function Product(props) {
   const [map, setMap] = React.useState(false);
   const [coordinates, setCoordinates] = React.useState({});
   // var data;
+  let loc;
   const Map = ReactMapboxGl({
     accessToken:
       "pk.eyJ1IjoiYWRpdHlhLTcxNDMiLCJhIjoiY2t2emprMjAyMmZmOTJwbTlpemZ4Y3ZlbCJ9.DFZZjO-WQ1FWDDCFoxDh1Q",
   });
 
   useEffect(async() => {
-    let loc;
     await axios
       .get(`https://apiv2.shiprocket.in/v1/external/orders/show/${id}`, {
         headers: {
@@ -95,7 +95,7 @@ function Product(props) {
                       coordinates={[coordinates.longitude, coordinates.latitude]}
                       style={{ zIndex: 4 }}
                     >
-                      <p>Mumbai</p>
+                      <p>{data.billing_city}</p>
                       <p>Latitutude: {coordinates.latitude}</p>
                       <p>Longitude: {coordinates.longitude}</p>
                     </Popup>
